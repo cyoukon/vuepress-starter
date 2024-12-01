@@ -1,10 +1,10 @@
 ---
 home: true
 title: Home
-heroImage: https://vuejs.press/images/hero.png
+heroImage: /images/DotNetLanguage.png
 actions:
-  - text: Get Started
-    link: ./getting-started.html
+  - text: 快速开始
+    link: get-started.html
     type: primary
 
   - text: Introduction
