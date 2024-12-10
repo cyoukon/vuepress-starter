@@ -13,7 +13,7 @@
 
 ASP.NET Core 请求管道包含一系列请求委托，依次调用。 下图演示了这一概念。 沿黑色箭头执行。
 
-![请求处理模式显示请求到达、通过三个中间件进行处理以及响应离开应用。 每个中间件运行其逻辑，并在 next() 语句处将请求传递到下一个中间件。 在第三个中间件处理请求之后，请求按相反顺序返回通过前两个中间件，以进行离开应用前并在其 next() 语句后的其他处理，作为对客户端的响应。](MiddlewareAndFilters.assets/request-delegate-pipeline.pngview=aspnetcore-5.0)
+![请求处理模式显示请求到达、通过三个中间件进行处理以及响应离开应用。 每个中间件运行其逻辑，并在 next() 语句处将请求传递到下一个中间件。 在第三个中间件处理请求之后，请求按相反顺序返回通过前两个中间件，以进行离开应用前并在其 next() 语句后的其他处理，作为对客户端的响应。](MiddlewareAndFilters.assets/request-delegate-pipeline.pngview=aspnetcore-5.0.png)
 
 下图显示了 ASP.NET Core MVC 和 Razor Pages 应用的完整请求处理管道。 你可以在典型应用中了解现有中间件的顺序，以及在哪里添加自定义中间件。 你可以完全控制如何重新排列现有中间件，或根据场景需要注入新的自定义中间件。
 
@@ -39,4 +39,4 @@ ASP.NET Core 请求管道包含一系列请求委托，依次调用。 下图演
 
 下图展示了筛选器类型在筛选器管道中的交互方式。
 
-![请求通过授权过滤器、资源过滤器、模型绑定、操作过滤器、操作执行和操作结果转换、异常过滤器、结果过滤器和结果执行进行处理。 返回时，请求仅由结果过滤器和资源过滤器进行处理，变成发送到客户端的响应。](MiddlewareAndFilters.assets/filter-pipeline-2.pngview=aspnetcore-5.0)
+![请求通过授权过滤器、资源过滤器、模型绑定、操作过滤器、操作执行和操作结果转换、异常过滤器、结果过滤器和结果执行进行处理。 返回时，请求仅由结果过滤器和资源过滤器进行处理，变成发送到客户端的响应。](MiddlewareAndFilters.assets/filter-pipeline-2.pngview=aspnetcore-5.0.png)

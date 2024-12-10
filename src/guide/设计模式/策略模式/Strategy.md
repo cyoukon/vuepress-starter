@@ -91,7 +91,7 @@ namespace StrategyPattern
 
 # 三、策略者模式在.NET中应用
 
- 　在.NET Framework中也不乏策略模式的应用例子。例如，在.NET中，为集合类型ArrayList和List<T>提供的排序功能，其中实现就利用了策略模式，定义了IComparer接口来对比较算法进行封装，实现IComparer接口的类可以是顺序，或逆序地比较两个对象的大小，具体.NET中的实现可以使用反编译工具查看[List.Sort(IComparer)](http://msdn.microsoft.com/zh-cn/library/234b841s(v=vs.110).aspx)的实现。其中List<T>就是承担着环境角色，而IComparer<T>接口承担着抽象策略角色，具体的策略角色就是实现了IComparer<T>接口的类，List<T>类本身实现了存在实现了该接口的类，我们可以自定义继承与该接口的具体策略类。
+ 　在`.NET Framework`中也不乏策略模式的应用例子。例如，在`.NET`中，为集合类型`ArrayList`和`List<T>`提供的排序功能，其中实现就利用了策略模式，定义了`IComparer`接口来对比较算法进行封装，实现`IComparer`接口的类可以是顺序，或逆序地比较两个对象的大小，具体.NET中的实现可以使用反编译工具查看[List.Sort(IComparer)](http://msdn.microsoft.com/zh-cn/library/234b841s(v=vs.110).aspx)的实现。其中`List<T>`就是承担着环境角色，而`IComparer<T>`接口承担着抽象策略角色，具体的策略角色就是实现了`IComparer<T>`接口的类，`List<T>`类本身实现了存在实现了该接口的类，我们可以自定义继承与该接口的具体策略类。
 
 # 四、策略者模式的适用场景
 

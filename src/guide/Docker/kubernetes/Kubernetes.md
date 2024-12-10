@@ -60,7 +60,6 @@ kubernetes的本质是**一组服务器集群**，它可以在集群的每个节
 - **版本回退**：如果发现新发布的程序版本有问题，可以立即回退到原来的版本
 - **存储编排**：可以根据容器自身的需求自动创建存储卷
 
-![image-20200526203726071](Kubenetes.assets/image-20200526203726071-1626780706899.png)
 
 ## 1.3 kubernetes组件
 
@@ -1780,20 +1779,20 @@ FIELDS:
 
 在kubernetes中基本所有资源的一级属性都是一样的，主要包含5部分：
 
-- apiVersion <string> 版本，由kubernetes内部定义，版本号必须可以用 kubectl api-versions 查询到
-- kind <string> 类型，由kubernetes内部定义，版本号必须可以用 kubectl api-resources 查询到
-- metadata <Object> 元数据，主要是资源标识和说明，常用的有name、namespace、labels等
-- spec <Object> 描述，这是配置中最重要的一部分，里面是对各种资源配置的详细描述
-- status <Object> 状态信息，里面的内容不需要定义，由kubernetes自动生成
+- apiVersion `<string>` 版本，由kubernetes内部定义，版本号必须可以用 kubectl api-versions 查询到
+- kind `<string>` 类型，由kubernetes内部定义，版本号必须可以用 kubectl api-resources 查询到
+- metadata `<Object>` 元数据，主要是资源标识和说明，常用的有name、namespace、labels等
+- spec `<Object>` 描述，这是配置中最重要的一部分，里面是对各种资源配置的详细描述
+- status `<Object>` 状态信息，里面的内容不需要定义，由kubernetes自动生成
 
 在上面的属性中，spec是接下来研究的重点，继续看下它的常见子属性:
 
-- containers <[]Object> 容器列表，用于定义容器的详细信息
-- nodeName <String> 根据nodeName的值将pod调度到指定的Node节点上
-- nodeSelector <map[]> 根据NodeSelector中定义的信息选择将该Pod调度到包含这些label的Node 上
-- hostNetwork <boolean> 是否使用主机网络模式，默认为false，如果设置为true，表示使用宿主机网络
-- volumes <[]Object> 存储卷，用于定义Pod上面挂在的存储信息
-- restartPolicy <string> 重启策略，表示Pod在遇到故障的时候的处理策略
+- containers `<[]Object>` 容器列表，用于定义容器的详细信息
+- nodeName `<String>` 根据nodeName的值将pod调度到指定的Node节点上
+- nodeSelector `<map[]>` 根据NodeSelector中定义的信息选择将该Pod调度到包含这些label的Node 上
+- hostNetwork `<boolean>` 是否使用主机网络模式，默认为false，如果设置为true，表示使用宿主机网络
+- volumes `<[]Object>` 存储卷，用于定义Pod上面挂在的存储信息
+- restartPolicy `<string>` 重启策略，表示Pod在遇到故障的时候的处理策略
 
 ## 5.2 Pod配置
 

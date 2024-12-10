@@ -332,8 +332,7 @@ RPC的处理流程：
                Console.ReadKey();
            }
    ```
-
-   ![img](./RabbitMQ.assets/20211224135523.png)
+   ![alt text](RabbitMQ.assets/image1.png)
 
 ## 3.7 总结
 
@@ -341,4 +340,4 @@ RPC的处理流程：
 
 下面位置可以看到交换机类型，amq.开头那几个是内置的，避免交换机过多可以直接使用。
 
-![img](./RabbitMQ.assets/20211224135653.png)
+   ![alt text](RabbitMQ.assets/image.png)
