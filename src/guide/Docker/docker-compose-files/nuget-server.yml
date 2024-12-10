@@ -1,0 +1,10 @@
+version: '3'
+services: 
+ nexus3:
+  image: sonatype/nexus3:3.37.0
+  container_name: nexus3
+  restart: always
+  ports:
+   - 18081:8081
+  volumes:
+   - D:/Personal/docker_files/nuget/data:/nexus-data # data无权限问题，在文章下面已经给出解决方案

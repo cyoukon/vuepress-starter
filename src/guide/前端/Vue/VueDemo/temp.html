@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temp</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="(value, name, index) in object" v-bind:key="value.id">
+        {{ index }}. {{ name }}: {{ value }}
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          object: [{ message: "Foo" }, { message: "Bar" }],
+        },
+        methods: {
+          getTime: function () {
+            this.nowTime = new Date().toLocaleString();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

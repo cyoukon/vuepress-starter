@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>default</title>
+</head>
+
+<body>
+    <!--<h1>WebSocket Web Client</h1>-->
+    <br />
+
+    <input type="text" placeholder="enter your message" id="message">
+    <button id="sendBtn">Send</button>
+    <ul id="messageList"></ul>
+
+    <script>
+        var scheme = document.location.protocol === "https:" ? "wss" : "ws";
+        var port = document.location.port ? (":" + document.location.port) : "";
+        const uri = scheme + "://" + document.location.hostname + port + "/ws" + "?key=" + guid();
+        socket = new WebSocket(uri, "this-is-token");
+        socket.onopen = function (e) {
+            console.log("websocket estabished!");
+        }
+
+        socket.onclose = function (e) {
+            console.log('websocket closed!');
+        }
+
+        socket.onmessage = function (e) {
+            appendItem(list, e.data);
+            console.log(e.data);
+        }
+
+        const list = document.getElementById("messageList");
+        const btn = document.getElementById("sendBtn");
+        btn.addEventListener("click", function () {
+            console.log("sending message~~~");
+
+            var messgae = document.getElementById("message");
+            socket.send(message.value)
+        })
+
+        function appendItem(list, message) {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(message));
+            list.appendChild(li);
+        }
+
+        function guid() {
+            function S4() {
+                return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+            }
+            return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+        }
+    </script>
+</body>
+
+</html>

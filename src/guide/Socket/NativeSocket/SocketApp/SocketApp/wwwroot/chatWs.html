@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+</head>
+
+<body>
+    <br />
+    <input type="text" placeholder="enter your name" id="key" />
+    <button id="connectBtn">Connect</button>
+    <br/>
+    <input type="text" placeholder="enter your message" id="message">
+    <button id="sendBtn">Send</button>
+    <ul id="messageList"></ul>
+
+    <script>
+        const list = document.getElementById("messageList");
+        const sendBtn = document.getElementById("sendBtn");
+        const key = document.getElementById("key")
+        const connectBtn = document.getElementById("connectBtn")
+        sendBtn.disabled = true;
+        sendBtn.addEventListener("click", function () {
+            console.log("sending message~~~");
+
+            var messgae = document.getElementById("message");
+            socket.send(message.value)
+        })
+
+        connectBtn.addEventListener("click", function () {
+            console.log("connect...");
+
+            var scheme = document.location.protocol === "https:" ? "wss" : "ws";
+            var port = document.location.port ? (":" + document.location.port) : "";
+            const uri = scheme + "://" + document.location.hostname + port + "/chat" + "?key=" + key.value;
+            socket = new WebSocket(uri);
+            socket.onopen = function (e) {
+                console.log("websocket estabished!");
+                sendBtn.disabled = false;
+                connectBtn.disabled = true;
+            }
+
+            socket.onclose = function (e) {
+                console.log('websocket closed!');
+                sendBtn.disabled = true;
+                connectBtn.disabled = false;
+            }
+
+            socket.onmessage = function (e) {
+                appendItem(list, e.data);
+                console.log(e.data);
+            }
+        })
+
+        function appendItem(list, message) {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(message));
+            list.appendChild(li);
+        }
+    </script>
+</body>
+
+</html>

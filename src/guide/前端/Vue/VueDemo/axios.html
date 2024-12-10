@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>axios</title>
+  </head>
+  <body>
+    <div id="app">
+      <label>歌名：</label>
+      <input type="text" v-model:value="keywords" />
+      <button @click="getData">搜索歌曲</button>
+      <button @click="getData2">搜索歌曲2</button>
+      <button @click="getData3">搜索歌曲3</button>
+      <table border="1" v-show="info">
+        <tr v-for="(value, index) in info">
+          <td>{{value.id}}</td>
+          <td>{{value.name}}</td>
+          <td>{{value.artists}}</td>
+          <td>{{JSON.stringify(value.artists)}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+      var songSearchUrl = "http://cloud-music.pl-fe.cn/search";
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          keywords: "我的天空",
+          limit: 10,
+          offset: 0,
+          info: null,
+        },
+        methods: {
+          getData() {
+            that = this;
+            axios
+              .get(
+                songSearchUrl +
+                  "?keywords=" +
+                  that.keywords +
+                  "&limit=" +
+                  that.limit +
+                  "&offset=" +
+                  that.offset
+              )
+              .then(function (response) {
+                // 处理成功情况
+                that.info = response.data.result.songs;
+              })
+              .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+              })
+              .then(function () {
+                // 总是会执行
+              });
+          },
+          // 上述请求也可以按以下方式完成
+          getData2() {
+            that = this;
+            axios
+              .get(songSearchUrl, {
+                params: {
+                  keywords: that.keywords,
+                  limit: that.limit,
+                  offset: that.offset,
+                },
+              })
+              .then(function (response) {
+                // 处理成功情况
+                that.info = response.data.result.songs;
+              })
+              .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+              })
+              .then(function () {
+                // 总是会执行
+              });
+          },
+          // 上述请求也可以按以下方式完成
+          getData3() {
+            that = this;
+            axios({
+              method: "get",
+              url: songSearchUrl,
+              params: {
+                keywords: that.keywords,
+                limit: that.limit,
+                offset: that.offset,
+              },
+            })
+              .then(function (response) {
+                // 处理成功情况
+                that.info = response.data.result.songs;
+              })
+              .catch(function (error) {
+                // 处理错误情况
+                console.log(error);
+              })
+              .then(function () {
+                // 总是会执行
+              });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
